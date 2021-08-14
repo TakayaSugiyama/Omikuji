@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">おみくじ</string>
+    <string name="content1">良縁が持ち込まれるでしょう</string>
+    <string name="content2">金運が非常に良く、思わぬ収入がありそう。</string>
+    <string name="content3">気力充実するでしょう</string>
+    <string name="content4">金運向上の兆しがありますが無駄使いは控えましょう</string>
+    <string name="content5">恋愛は心掛け次第でしょう</string>
+    <string name="content6">健康は可もなく不可もないでしょう</string>
+    <string name="content7">金運は、ボランティア活動が上昇のきっかけになるはず</string>
+    <string name="content8">恋愛は辛抱が大事です</string>
+    <string name="content9">寝不足に注意しましょう。</string>
 </resources>

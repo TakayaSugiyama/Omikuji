@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/fortune.xml" value="0.3423913043478261" />
         <entry key="app/src/main/res/layout/main.xml" value="0.1381340579710145" />
+        <entry key="app/src/main/res/layout/menu.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/omikuji.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.33636363636363636" />
       </map>
     </option>
   </component>

@@ -2,30 +2,73 @@ package jp.wings.nikkeibp.omikuji
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import java.util.*
+import android.view.Menu
+import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
+import kotlinx.android.synthetic.main.fortune.*
 import kotlinx.android.synthetic.main.omikuji.*
 
 class OmikujiActivity : AppCompatActivity() {
+
+    //おみくじ棚の配列
+    val omikujiShelf = Array<OmikujiParts>(20){ OmikujiParts(R.drawable.result2, R.string.content1) }
+    //おみくじ番号保管用
+    var omikujiNumber = -1
+    val omikujiBox =  OmikujiBox()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.omikuji)
-//        imageView.setImageResource(R.drawable.result1)
-//        //くじ番号の取得
-//        val rnd = Random()
-//        val number = rnd.nextInt(20)
-//
-//        //おみくじの準備
-//        val omikujiShelf = Array(20) { "吉"}
-//        omikujiShelf[0] = "大吉"
-//        omikujiShelf[19] = "凶"
-//
-//        //おみくじ棚から取得
-//        val str: String = omikujiShelf[number]
-//        hello_view.text = str
+        omikujiBox.omikujiView = imageView
+
+        //おみくじ棚の準備
+        omikujiShelf[0].drawID = R.drawable.result1
+        omikujiShelf[1].fortuneId = R.string.content2
+
+        omikujiShelf[1].drawID = R.drawable.result3
+        omikujiShelf[1].fortuneId = R.string.content9
+
+        omikujiShelf[2].fortuneId = R.string.content3
+        omikujiShelf[3].fortuneId = R.string.content4
+        omikujiShelf[4].fortuneId = R.string.content5
+        omikujiShelf[5].fortuneId = R.string.content6
+        omikujiShelf[6].fortuneId = R.string.content7
+        omikujiShelf[7].fortuneId = R.string.content8
+        omikujiShelf[8].fortuneId = R.string.content9
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val toast = Toast.makeText(this, item.title, Toast.LENGTH_LONG)
+        toast.show()
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     fun onButtonClick(view: View){
-        imageView.setImageResource(R.drawable.result1)
+        omikujiBox.shake()
+    }
+
+    fun drawResult(){
+        omikujiNumber = omikujiBox.number
+        val op = omikujiShelf[omikujiNumber]
+        setContentView(R.layout.fortune)
+
+        //画像とテキストを変更する
+        imageView3.setImageResource(op.drawID)
+        textView.setText(op.fortuneId)
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if(event?.action == MotionEvent.ACTION_DOWN){
+            if(omikujiNumber < 0 && omikujiBox.finish){
+                drawResult()
+            }
+        }
+        return super.onTouchEvent(event)
     }
 }
