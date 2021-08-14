@@ -1,0 +1,10 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:gravity="center_horizontal|center_vertical">
+    <ImageView android:layout_width="match_parent" android:layout_height="wrap_content" app:srcCompat="@drawable/omikuji1" android:id="@+id/imageView" android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onButtonClick"
+        android:text="占う" />
+</LinearLayout>
