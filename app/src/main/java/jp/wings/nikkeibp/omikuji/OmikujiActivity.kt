@@ -2,19 +2,59 @@ package jp.wings.nikkeibp.omikuji
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
+import kotlinx.android.synthetic.main.fortune.*
 import kotlinx.android.synthetic.main.omikuji.*
 
 class OmikujiActivity : AppCompatActivity() {
 
+    //おみくじ棚の配列
+    val omikujiShelf = Array<OmikujiParts>(20){ OmikujiParts(R.drawable.result2, R.string.content1) }
+    //おみくじ番号保管用
+    var omikujiNumber = -1
     val omikujiBox =  OmikujiBox()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.omikuji)
         omikujiBox.omikujiView = imageView
+
+        //おみくじ棚の準備
+        omikujiShelf[0].drawID = R.drawable.result1
+        omikujiShelf[1].fortuneId = R.string.content2
+
+        omikujiShelf[1].drawID = R.drawable.result3
+        omikujiShelf[1].fortuneId = R.string.content9
+
+        omikujiShelf[2].fortuneId = R.string.content3
+        omikujiShelf[3].fortuneId = R.string.content4
+        omikujiShelf[4].fortuneId = R.string.content5
+        omikujiShelf[5].fortuneId = R.string.content6
+        omikujiShelf[6].fortuneId = R.string.content7
+        omikujiShelf[7].fortuneId = R.string.content8
+        omikujiShelf[8].fortuneId = R.string.content9
     }
 
     fun onButtonClick(view: View){
         omikujiBox.shake()
+    }
+
+    fun drawResult(){
+        omikujiNumber = omikujiBox.number
+        val op = omikujiShelf[omikujiNumber]
+        setContentView(R.layout.fortune)
+
+        //画像とテキストを変更する
+        imageView3.setImageResource(op.drawID)
+        textView.setText(op.fortuneId)
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if(event?.action == MotionEvent.ACTION_DOWN){
+            if(omikujiNumber < 0 && omikujiBox.finish){
+                drawResult()
+            }
+        }
+        return super.onTouchEvent(event)
     }
 }
