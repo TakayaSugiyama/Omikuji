@@ -51,6 +51,9 @@ class OmikujiActivity : AppCompatActivity() {
         if (item.itemId == R.id.item1){
             val intent = Intent(this, OmikujiPreferenceActivity::class.java)
             startActivity(intent)
+        }else{
+            val intent = Intent(this, AboutActivity::class.java)
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }

@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".OmikujiPreferenceActivity"></activity>
+        <activity android:name=".AboutActivity" android:theme="@style/AboutTheme"></activity>
     </application>
 
 </manifest>
