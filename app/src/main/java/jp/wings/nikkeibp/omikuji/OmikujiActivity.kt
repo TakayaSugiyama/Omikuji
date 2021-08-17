@@ -1,7 +1,9 @@
 package jp.wings.nikkeibp.omikuji
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -20,6 +22,11 @@ class OmikujiActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.omikuji)
+
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        val value = pref.getBoolean("button", false)
+        button.visibility = if (value) View.VISIBLE else View.INVISIBLE
+
         omikujiBox.omikujiView = imageView
 
         //おみくじ棚の準備
@@ -39,8 +46,12 @@ class OmikujiActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val toast = Toast.makeText(this, item.title, Toast.LENGTH_LONG)
-        toast.show()
+//        val toast = Toast.makeText(this, item.title, Toast.LENGTH_LONG)
+//        toast.show()
+        if (item.itemId == R.id.item1){
+            val intent = Intent(this, OmikujiPreferenceActivity::class.java)
+            startActivity(intent)
+        }
         return super.onOptionsItemSelected(item)
     }
 

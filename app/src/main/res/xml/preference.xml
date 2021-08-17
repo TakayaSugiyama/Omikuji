@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<CheckBoxPreference
+    android:summary="ボタン表示のあり・なしを切り替えます"
+    android:title="ボタン表示"
+    android:key="button"
+    android:defaultValue="false">
+</CheckBoxPreference>
+<CheckBoxPreference
+    android:summary="バイブレーションのON/OFFを切り替えます"
+    android:title="バイブレーション"
+    android:key="vibration"
+    android:defaultValue="true">
+</CheckBoxPreference>
+</PreferenceScreen>
