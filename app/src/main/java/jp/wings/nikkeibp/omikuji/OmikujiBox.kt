@@ -1,5 +1,8 @@
 package jp.wings.nikkeibp.omikuji
 
+import android.hardware.SensorEvent
+import android.os.Vibrator
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationSet
 import android.view.animation.RotateAnimation
@@ -9,11 +12,34 @@ import java.util.*
 
 class OmikujiBox : Animation.AnimationListener {
     lateinit var omikujiView: ImageView
+
     var finish = false
     val number : Int
     get(){
         val rnd = Random()
         return rnd.nextInt(20)
+    }
+
+    var beforeTime = 0L
+    var beforeValue = 0F
+
+    fun chkShake(event: SensorEvent?): Boolean{
+        val nowtime = System.currentTimeMillis()
+        val difftime : Long = nowtime - beforeTime
+        val nowvalue: Float = (event?.values?.get(0) ?: 0F) +  (event?.values?.get(1) ?: 0F)
+
+        if (1500 < difftime){
+            //前回の値との差からスピードを計算
+            val speed = Math.abs(nowvalue - beforeValue) / difftime * 10000
+            beforeTime = nowtime
+            beforeValue = nowvalue
+            Log.d("Speed", "${speed}")
+
+            if(80 <=  speed){
+                return true
+            }
+        }
+        return false
     }
 
     fun shake(){
